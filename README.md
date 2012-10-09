@@ -1,6 +1,8 @@
 rrdtool-nginx
 =============
 
+<img src="http://logotype.se/serverStatsGenerated/connections-day.png">
+
 simple graphics stats for nginx
 
 Get started

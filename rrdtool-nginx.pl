@@ -3,7 +3,7 @@ use RRDs;
 use LWP::UserAgent;
 
 my $rrd = '/opt/rrd';
-my $img = '/var/www/vhosts/<YOUR DOCUMENT ROOT>';
+my $img = '<YOUR DOCUMENT ROOT>';
 my $URL = "http://<URL TO NGINX STATS>";
 
 my $ua = LWP::UserAgent->new(timeout => 30);
@@ -79,10 +79,7 @@ close RQS;
 #print "RQ:$rqs; TT:$total; RD:$reading; WR:$writing; WA:$waiting\n";
 
 # insert values into rrd database
-RRDs::update "$rrd/nginx.rrd",
-  "-t", "requests:connects:total:reading:writing:waiting",
-  "N:$rqs:$cns:$total:$reading:$writing:$waiting";
-
+RRDs::update "$rrd/nginx.rrd", "-t", "requests:connects:total:reading:writing:waiting", "N:$rqs:$cns:$total:$reading:$writing:$waiting";
 
 # Generate graphs
 CreateGraphs("day");
@@ -90,9 +87,7 @@ CreateGraphs("week");
 CreateGraphs("month");
 CreateGraphs("year");
 
-
-#------------------------------------------------------------------------------
-sub CreateGraphs($){
+sub CreateGraphs($) {
   my $period = shift;
   
   RRDs::graph "$img/load-$period.png",

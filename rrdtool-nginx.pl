@@ -155,7 +155,8 @@ sub CreateGraphs($) {
 		"GPRINT:waiting:MAX:  Max\\: %5.1lf %S\\n",
 
 		"HRULE:0#000000";
-  if ($ERROR = RRDs::error) { 
+
+  if ($ERROR = RRDs::error) {
     print "$0: unable to generate $period graph: $ERROR\n"; 
   }
 }
